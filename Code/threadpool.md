@@ -16,15 +16,15 @@ description: 线程池
 生产者-消费者模式
 > +  同步层是生产者，不断将新任务丢到排队层
 > +  消费者是异步层，线程执行排队层的任务
->   ![threadpool](/Blog/images/threadpool/threadpool.png)
+>   ![threadpool](/Code/images/threadpool/threadpool.png)
 
 ###半同步半异步线程池-消费者###
 
-![consumer](/Blog/images/threadpool/consumer.png)
+![consumer](/Code/threadpool/consumer.png)
 
 ###半同步半异步线程池-生产者###
 
-![producer](/Blog/images/threadpool/producer.png)
+![producer](/Code/images/threadpool/producer.png)
 
 ###半同步半异步线程池特性###
 半同步半异步线程池特性介绍：
