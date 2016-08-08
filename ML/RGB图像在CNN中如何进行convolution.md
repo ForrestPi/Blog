@@ -1,0 +1,9 @@
+#RGB图像在CNN中如何进行convolution?
+
+
+
+比如一副RGB图像，通过某一convolution layer,该layer共有96个3x3 filter,那请问我是把RGB每个channel 都和这96个filter 分别卷积，然后把RGB三个channel的结果（共96 x 3个结果）三三相加得到96个结果吗？
+
+其实应该是96个三维的3*3*3的filter和H*W*3的图像的三维卷积。每个卷积的结果是一个H*W的二维的feature map，如果不做padding则长宽各减2。把这96个二维的feature map拼起来，就得到了这个卷积层的输出。
+一般文献里描述filter size（比如你这里的3*3）的大小的时候，用的都是二维的大小，但其实真正在网络里做卷积的filter是三维的，因为第三个维度一般都等于输入层的第三个维度，所以就省略了。并不是像你说的那样是二维的filter。顺带一说，正是由于这样的特性，再加上filter一般都是正方形，因此一个filter在给定其输入的情况下，可以完全由正方形的变长描述，而这一性质在程序实现的时候也十分有用，cudaconvnet第一版的说明文档里对此也有提及。
+你所说的用一个3*3的filter对RGB三个通道分别卷积再相加，等效为一个3*3*3的filter的卷积，该filter每一个二维slice是相同的，而一般来说三个slice应该不同。
